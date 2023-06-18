@@ -2,7 +2,10 @@ use std::rc::Rc;
 
 use thiserror::Error;
 
-use crate::{tag::encoding::EncodingError, utils::latin1_to_string};
+use crate::{
+    tag::encoding::{Encoding, EncodingError},
+    utils::latin1_to_string,
+};
 
 use super::Frame;
 

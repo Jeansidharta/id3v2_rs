@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-use crate::utils::latin1_to_string;
+use crate::{find_substring, utils::latin1_to_string};
 
 #[derive(PartialEq, Clone, Debug)]
 pub enum ByteOrder {
@@ -26,15 +26,6 @@ pub enum EncodingError {
     MissingBOM,
     #[error("Invalid Byte Order Mark")]
     InvalidBOM(u8, u8),
-}
-
-fn find_substring(bytes: &[u8], pattern: &[u8]) -> Option<usize> {
-    let pattern_match_index = 0;
-    if pattern.len() == 0 {
-        
-    }
-    for byte in bytes.iter() {}
-    todo!()
 }
 
 impl Encoding {
@@ -73,7 +64,7 @@ impl Encoding {
         let mut bytes = bytes;
         let separator = self.string_separator();
         let mut vector = vec![];
-        while let Some(index) = bytes.find_substring(separator) {
+        while let Some(index) = find_substring(bytes, separator) {
             vector.push(&bytes[..index]);
             bytes = &bytes[index + separator.len()..];
         }
@@ -110,7 +101,7 @@ impl Encoding {
         }
     }
 
-    fn bytes_length(&self) -> usize {
+    pub fn bytes_length(&self) -> usize {
         match self {
             Encoding::Latin1 => 1,
             Encoding::UTF16(_) => 2,

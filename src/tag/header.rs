@@ -15,10 +15,10 @@ pub enum HeaderFlagType {
 impl HeaderFlagType {
     pub fn binary_representation(&self) -> u8 {
         match self {
-            Self::Unsynchronisation => 0b1000000,
-            Self::ExtendedHeader => 0b0100000,
-            Self::ExperimentalIndicator => 0b0010000,
-            Self::FooterPresent => 0b0001000,
+            Self::Unsynchronisation => 0b10000000,
+            Self::ExtendedHeader => 0b01000000,
+            Self::ExperimentalIndicator => 0b00100000,
+            Self::FooterPresent => 0b00010000,
         }
     }
 }
